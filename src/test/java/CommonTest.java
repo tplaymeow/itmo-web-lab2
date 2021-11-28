@@ -10,6 +10,6 @@ public class CommonTest {
 
     @Test
     public void testCommonFailure() {
-        Assert.assertEquals(ServiceService.getNumber(), 10);
+        Assert.assertEquals(ServiceService.getNumber(), 5);
     }
 }

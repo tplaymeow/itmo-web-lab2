@@ -15,11 +15,12 @@ jobs:
         with:
           java-version: 8
 
-      - name: Test with Maven
-        run: mvn test --batch-mode --fail-at-end
-
-      - name: Publish Test Report
-        uses: scacap/action-surefire-report@v1
+      - name: Cache Maven packages
+        uses: actions/cache@v2
         with:
-          report_paths: '**/surefire-reports/junitreports/TEST-*.xml'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Test with Maven
+        run: mvn -B test --file pom.xml
