@@ -13,6 +13,7 @@
     <script type="text/javascript" src="js/Model.js"></script>
     <script type="text/javascript" src="js/Services/StorageService.js"></script>
     <script type="text/javascript" src="js/Services/NetworkService.js"></script>
+    <script type="text/javascript" src="js/UI/canvas.js"></script>
 
     <link rel="stylesheet" href="css/main-styles.css">
     <meta charset="UTF-8">
@@ -30,7 +31,9 @@
     <div class="main-container">
         <div class="inline">
 
-            <div class="control-panel"> <img src="data/areas.png"> </div>
+            <div class="control-panel">
+                <canvas id="canvas"></canvas>
+            </div>
             <div class="control-panel" id="result"></div>
 
         </div>

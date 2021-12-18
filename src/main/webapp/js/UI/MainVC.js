@@ -4,13 +4,15 @@ class MainViewController {
         resultView,
         calculateResultButtonView,
         resultsTable,
-        model
+        model,
+        canvas
     ) {
         this._model = model;
         this._controlsView = controlsView;
         this._resultView = resultView;
         this._calculateResultButtonView = calculateResultButtonView;
         this._resultsTableView = resultsTable;
+        this._canvas = canvas;
     }
 
     initialize() {
@@ -21,6 +23,7 @@ class MainViewController {
         this._resultView.render();
         this._controlsView.render();
         this._resultsTableView.render(newVM);
+        this._canvas.render(3);
     }
 
     // - Private
@@ -32,9 +35,7 @@ class MainViewController {
     _calculateButtonTapped() {
         let x = parseInt(this._controlsView.xText, 10);
         let y = parseFloat(this._controlsView.yText);
-        let r = parseInt(this._controlsView.rText);
-
-        alert("x : " + x + "; y : " + y + "; z : " + r + ";")
+        let r = parseInt(this._controlsView.rText, 10);
 
         let params = {x: x, y: y, r: r};
 
