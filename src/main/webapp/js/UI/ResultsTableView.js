@@ -15,6 +15,7 @@ class ResultsTableView {
 
         let rows = viewModels.map(ResultsTableView._makeTableRow);
         let table = document.createElement("TABLE");
+        table.appendChild(ResultsTableView._makeTableHead());
         rows.forEach((row) => { table.appendChild(row) });
 
         this.element.appendChild(table);

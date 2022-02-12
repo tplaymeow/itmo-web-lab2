@@ -16,7 +16,7 @@ class ResultView {
     }
 
     showErrorNotification(msg) {
-        let text = msg == null ? "Техническая шоколадка!" : msg;
+        const text = msg ?? "";
         this.element.innerHTML = "<p style=\"color:#ff0000\">" + text + "</p>";
     }
 }
