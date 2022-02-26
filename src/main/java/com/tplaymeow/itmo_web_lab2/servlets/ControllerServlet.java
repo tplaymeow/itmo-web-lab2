@@ -12,11 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
@@ -35,17 +33,16 @@ public class ControllerServlet extends HttpServlet {
                           HttpServletResponse resp) throws ServletException, IOException {
         addResultsIfNeeded();
         String requestString = req.getReader().lines().collect(Collectors.joining());
-        Map<String, String> requestParameters = Parser.splitQuery(requestString);
+        log.log(Level.INFO, requestString);
 
         try {
-            Integer x = Integer.parseInt(requestParameters.get("x"));
-            Double y = Double.parseDouble(requestParameters.get("y"));
-            Integer r = Integer.parseInt(requestParameters.get("r"));
-            Coordinates coordinates = new Coordinates(x, y, r);
+            List<Coordinates> coordinates = Parser.parseCoordinates(requestString);
             getServletContext().setAttribute("coordinates", coordinates);
 
             openAreaCheck(req, resp);
-        } catch (NumberFormatException | NullPointerException ignored) {
+        } catch (NullPointerException |
+                IllegalArgumentException |
+                UnsupportedEncodingException ignored) {
             openMainPage(req, resp);
         }
     }

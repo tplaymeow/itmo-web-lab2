@@ -27,7 +27,11 @@ class ControlsView {
 
     get rText() { return $("input.gray-button.selected").val(); }
     get yText() { return $("#y-input").val(); }
-    get xText() { return $("input[name=X]:checked").val(); }
+    get xText() {
+        return $("input[name=X]:checked")
+            .map(function () { return $(this).val() })
+            .toArray();
+    }
 
     set onRChanged(val) {
         this._onRChanged = val;
@@ -46,7 +50,7 @@ class ControlsView {
         element.classList.add("radio-container")
 
         let input = document.createElement("INPUT");
-        input.type = "radio";
+        input.type = "checkbox";
         input.name = "X";
         input.value = value;
 

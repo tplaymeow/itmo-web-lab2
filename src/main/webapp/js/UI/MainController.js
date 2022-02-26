@@ -48,7 +48,8 @@ class MainController {
     }
 
     _calculateButtonTapped() {
-        const x = parseInt(this._controlsView.xText, 10);
+        const x = this._controlsView.xText
+            .map(text => { return parseInt(text, 10) });
         const y = parseFloat(this._controlsView.yText);
         const r = parseInt(this._controlsView.rText, 10);
         const params = {x: x, y: y, r: r};
@@ -66,7 +67,7 @@ class MainController {
         });
         this._canvas.onClickCanvas = (coordinates) => {
             console.log(coordinates);
-            const x = Math.round(coordinates.x);
+            const x = [Math.round(coordinates.x)];
             const y = coordinates.y;
             const r = parseInt(this._controlsView.rText, 10);
             const params = {x: x, y: y, r: r};

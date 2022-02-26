@@ -6,7 +6,9 @@ class MainModel {
 
     calculateResult(params) {
         let incorrectValuesNames = [];
-        if (isNaN(params.x) || !(-4 <= params.x && params.x <= 4))
+
+        if (params.x.length === 0 ||
+            params.x.filter(val => { return !(-4 <= val && val <= 4) }).length > 0)
             incorrectValuesNames.push("X");
         if (isNaN(params.y) || !(-3 <= params.y && params.y <= 3))
             incorrectValuesNames.push("Y");

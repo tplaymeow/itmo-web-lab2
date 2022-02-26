@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:useBean id="lastResult" scope="application" class="com.tplaymeow.itmo_web_lab2.models.Result"/>
+<jsp:useBean id="lastResultIsSuccess" scope="application" class="java.lang.Boolean"/>
 <jsp:useBean id="results" scope="application" class="com.tplaymeow.itmo_web_lab2.models.ResultsListBean"/>
 
 <html>
@@ -15,11 +15,11 @@
 <div class="horizontal-center-container">
     <div class="main-container">
         <div class="control-panel">
-            <img src="<%= lastResult.isSuccess() ? "data/success.png" : "data/failure.png" %>"
+            <img src="${lastResultIsSuccess ? "data/success.png" : "data/failure.png"}"
                  id="result-image">
         </div>
         <div class="control-panel">
-            <a href="/itmo-web-lab2-1.0-SNAPSHOT">
+            <a href="/web-lab2">
                 <input type="button" value="Отправить ещё" class="blue-button">
             </a>
         </div>
